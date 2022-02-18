@@ -1,0 +1,176 @@
+{block content}
+<div class="obsah">
+    Počet značek v databázi: {$pocetZnacek}<br>
+	<a n:href="serad!, 'ASC'">Seřadit sestupně</a> / 
+		<a n:href="serad!, 'DESC'">Seřadit vzestupně</a>
+
+
+
+	
+
+	{foreach $znacky as $znacka}
+		
+
+
+		<div class="col s12 m12">
+			<h2>{$znacka->nazev}</h2>
+			<div class="card horizontal">
+				
+				<div class="card-stacked">
+					<div class="card-content"> 
+						<p><img  src="{$znacka->loga->cesta}" alt="{$znacka->nazev}">
+						{$znacka->popis}</p>
+					</div>
+					<div class="card-tabs">
+						<ul class="tabs tabs-fixed-width">
+							<li class="tab"><a class="active" href="#osoba_{$znacka->id}">Zodpovědná osoba</a></li>
+							<li class="tab"><a href="#dodavatel_{$znacka->id}">Dodavatel</a></li>
+						</ul>
+					</div>
+					<div class="card-content grey lighten-4">
+						<div id="osoba_{$znacka->id}">{$osoby[$znacka->spravce_znacky_id]}</div>
+						<div id="dodavatel_{$znacka->id}">{$dodavatele[$znacka->dodavatel_id]}</div>
+					</div>
+					<div class="card-action">
+						<a n:href="uprav!,$znacka->id" class="ajax waves-effect waves-teal btn" title="editovat"><i class="fa fa-balance-scale fa-lg"></i>Upravit</a>
+				
+						<a onclick="return confirm('Opravdu chcete smazat danou značku?');" n:href="smaz, $znacka->id" class="waves-effect waves-teal btn red">Smazat značku</a>
+						<div class="card-footer">
+							Vložil/a: {$osoby[$znacka->vlozil]}, {$znacka->pridano|date:"d/m/Y H:i"}.<br>
+							 Poslední aktualizace {$znacka->aktualizace|date:"d/m/Y H:i"}
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		
+
+	{/foreach}
+	<div class="row">
+		<div class="col s7 m7">
+			<ul class="pagination">
+				{if $strana == 1}
+					<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+				{else}
+					<li class="waves-effect"><a n:href="default, $strana - 1"><i class="material-icons">chevron_left</i></a></li>
+				{/if}
+				{for $i=1;$i<=$posledni;$i++}
+					{if ($i==$strana)}	
+						<li class="active"><a n:href="default, $i">{$i}</a></li>
+					{else}
+						<li class="waves-effect"><a n:href="default, $i">{$i}</a></li>
+					{/if}
+				{/for}
+				{if $strana == $posledni}
+					<li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+				{else}
+					<li class="waves-effect"><a n:href="default, $strana + 1"><i class="material-icons">chevron_right</i></a></li>
+				{/if}
+			</ul>
+		</div>
+		<div class="col s5 m5">
+			Počet výsledků na stránku:	{$pocet}
+			<ul class="pagination">
+				{foreach [3,5,10,15] as $vysledku}
+					<li class="waves-effect"><a n:href="default, 'pocet'=>$vysledku">{$vysledku}</a></li>
+				{/foreach}
+			</ul>
+		</div>
+	</div>
+		
+{snippet modal}
+	{ifset $modalNadpis}
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+				<h4>{$modalNadpis}</h4>
+				<p>
+					<div class="row">
+						{form upravZnacku class: 'col s12'}
+						
+
+							<div class="row">
+								<div class="input-field col s8">
+									{input nazev class:"validate"}
+									
+									{label nazev class:"active"}
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="input-field col s12">
+									{input popis class:"materialize-textarea"}
+									
+									{label popis class:"active"}
+								</div>
+							</div>
+
+							<div class="input-field col s8">
+								
+								<br>
+								{input spravce_znacky_id}
+								{label spravce_znacky_id}
+							</div>
+
+							<div class="input-field col s8">
+								
+								<br>
+								{input dodavatel_id}
+								{label dodavatel_id}
+								
+							</div>
+							<div class="input-field col s12">
+								{input send class:"btn waves-effect waves-light"}
+							</div>
+
+						{/form}
+					</div>
+				
+				</p>
+			</div>
+			
+			<div class="modal-footer">	
+				<a href="#" class="modal-close waves-effect waves-green btn-flat">Zavřít</a>
+			</div>
+			
+		</div>
+	{/ifset}	
+{/snippet}
+
+{/block}
+
+
+Nevyužité - card s image - špatně zobrazeno na telefonech 
+
+<div class="col s12 m12">
+			<h2>{$znacka->nazev}</h2>
+			<div class="card horizontal">
+				<div class="card-image valign-wrapper">
+					<img  src="{$znacka->loga->cesta}" alt="{$znacka->nazev}">
+				</div>
+				<div class="card-stacked">
+					<div class="card-content"> 
+						<p>{$znacka->popis}</p>
+					</div>
+					<div class="card-tabs">
+						<ul class="tabs tabs-fixed-width">
+							<li class="tab"><a class="active" href="#osoba_{$znacka->id}">Zodpovědná osoba</a></li>
+							<li class="tab"><a href="#dodavatel_{$znacka->id}">Dodavatel</a></li>
+						</ul>
+					</div>
+					<div class="card-content grey lighten-4">
+						<div id="osoba_{$znacka->id}">{$osoby[$znacka->spravce_znacky_id]}</div>
+						<div id="dodavatel_{$znacka->id}">{$dodavatele[$znacka->dodavatel_id]}</div>
+					</div>
+					<div class="card-action">
+						<a n:href="uprav!,$znacka->id" class="ajax waves-effect waves-teal btn" title="editovat"><i class="fa fa-balance-scale fa-lg"></i>Upravit</a>
+				
+						<a onclick="return confirm('Opravdu chcete smazat danou značku?');" n:href="smaz, $znacka->id" class="waves-effect waves-teal btn red">Smazat značku</a>
+						<div class="card-footer">
+							Vložil/a: {$osoby[$znacka->vlozil]}, {$znacka->pridano|date:"d/m/Y H:i"}.<br>
+							 Poslední aktualizace {$znacka->aktualizace|date:"d/m/Y H:i"}
+					</div>
+					
+				</div>
+			</div>
+		</div>

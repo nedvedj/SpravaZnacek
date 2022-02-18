@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+
+	<title>{ifset title}{include title|stripHtml} | {/ifset}Administrace značek</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<link rel="stylesheet" href="{$basePath}/assets/materialize/css/materialize.css">
+	<link rel="stylesheet" href="{$basePath}/css/styl.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+</head>
+
+<body>
+	<div n:foreach="$flashes as $flash" class="msg">
+		<div class="card-stacked">
+			<div class="card-content">
+			<p>{$flash->message} </p>
+			</div>
+			<div class="card-action">
+			<a id="skryjFlash" href="#">Zavřít</a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="section header valign-wrapper">
+			<div class="col s1">
+				<a href="#" data-target="slide-out" id="menu" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
+			</div>
+			{*
+			<div class="col s2">
+				<a href="#!" class="brand-logo">Logo společnosti</a>
+			</div>
+			*}
+			<div class="col s9">
+				<a n:if="$uzivatel!=''" class="odhlas" n:href="Login:odhlas">Odhlásit({$uzivatel})</a>
+			</div>
+		</div>
+	</div>
+
+	<ul id="slide-out" class="sidenav">
+		<li><a n:href="Homepage:pridej">Nová značka <i class="material-icons right">home</i></a></li>
+		<li><a n:href="Homepage:default">Značky  <i class="material-icons right">collections_bookmark</i></a></li>
+		<li><a n:href="Homepage:moje">Moje značky<i class="material-icons right">cloud</i></a></li>
+	</ul>
+	
+
+
+
+
+	<div class="row flex">
+
+      	<div id="nav" class="col l2 hide-on-med-and-down">
+			<ul>
+				<li><a class="waves-effect waves-light btn {$presenter->isLinkCurrent('Homepage:pridej') ? active}" n:href="Homepage:pridej"><span class="hide-on-med-and-down">Nová značka </span> <i class="material-icons right">home</i></a></li>
+				<li><a class="waves-effect waves-light btn {$presenter->isLinkCurrent('Homepage:default') ? active}" n:href="Homepage:default"><span class="hide-on-med-and-down">Značky</span>  <i class="material-icons right">collections_bookmark</i></a></li>
+				<li><a class="waves-effect waves-light btn" n:href="Homepage:moje"><span class="hide-on-med-and-down">Moje značky </span> <i class="material-icons right">cloud</i></a></li>
+
+			</ul> 
+      	</div>
+
+      	<div class="col l10 m12 s12">
+			<div class="content">
+				<div class="progress">
+					<div class="indeterminate"></div>
+					
+				</div>
+				{include content}
+			</div>
+		</div>
+	</div>
+	
+	{block scripts}
+	<script type="text/javascript" src="{$basePath}/assets/jquery-3.6.0.js"></script>
+	<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+	<script type="text/javascript" src="{$basePath}/assets/materialize/js/materialize.min.js"></script>
+	
+	<script type="text/javascript" src="{$basePath}/assets/nette.ajax.js"></script>
+
+	<script>
+
+
+
+$(document).ready(function(){
+	$.nette.init();
+	$('ul.tabs').tabs();
+	$('select').formSelect();
+	$('.sidenav').sidenav();
+
+	$.nette.ext("modals", {
+        success: function(payload) {
+            if (payload.redirect) {
+               // $(".modal").modal("hide");
+            } else if(payload.isModal) {  
+				$('.modal').modal({
+					dismissible:false
+				}); 
+				$('.modal').modal("open");
+				$(".progress").hide();
+            }
+        }
+    });
+
+	$( ".btn" ).click(function() {
+		$(".progress").show();
+	});
+
+	$( "#skryjFlash" ).click(function() {
+		$( ".msg" ).hide();
+	});
+
+	if($(window).width() <= 993) $('#menu').show();
+    else $('#menu').hide();
+
+	$(window).resize(function() {
+        if($(window).width() <= 993) {
+            $('#menu').show();
+        } else {
+            // if smaller
+            $('#menu').hide();
+        }
+	});
+
+});
+
+	</script>
+	{/block}
+</body>
+</html>

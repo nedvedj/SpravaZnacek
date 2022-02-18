@@ -1,0 +1,60 @@
+{block content}
+<div class="obsah">
+    
+	
+				{form vlozZnacku class: 'col s12'}
+				
+					<div class="err" n:if="$form->getOwnErrors()"> 
+						<b>Nastala chyba!</b>
+						<ul>
+							{foreach $form->getOwnErrors() as $formErr}
+								<li>{$formErr}</li>
+							{/foreach}
+						</ul>
+					</div>
+					<div class="row">
+						<div class="input-field col s8">
+							{input nazev class:"validate"}
+							
+							{label nazev}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="input-field col s12">
+							{input popis class:"materialize-textarea"}
+							
+							{label popis }
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="input-field col s12">
+							{label logo}<br><br>
+							{input logo}
+						</div>
+					</div>
+					
+					
+					<div class="row">	
+						<div class="col s6">
+							{label spravce_znacky_id}
+							{input spravce_znacky_id class:"browser-default"}
+						</div>			
+						<div class="col s6">
+
+							{label dodavatel_id}
+							{input dodavatel_id class:"browser-default"}
+						</div>
+					</div>	
+
+					<div class="input-field col s12">
+						{input send class:"btn waves-effect waves-light btn-large"}
+					</div>
+
+				{/form}
+				
+			</div>
+
+</div>

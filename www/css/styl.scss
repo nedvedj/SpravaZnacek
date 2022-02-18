@@ -1,0 +1,173 @@
+$cervena: #EE3E33;
+$modra:#005ca9;
+$svetla: grey;
+$zluta: #ffde00;
+$pozadi: lightgrey;
+$block: #fff;
+$text: #000;
+
+$break1: 1300px;
+$break2: 993px;
+$velikost_menu: 60px;
+
+body {
+    background-color:$pozadi;
+    color: $text;
+    height: 100vh;
+    margin:0 auto;
+}
+
+.header{
+    height:$velikost_menu;
+    z-index: 999;
+    width:100%;
+    min-width:100%;
+    background-color: $modra;
+    position:fixed !important;
+    top:0;
+    overflow: hidden;
+    img {
+        width:100%;
+    }
+
+    .odhlas {
+        color:#fff;
+        font-size:1.2em;
+        float:right;
+        margin-right:2%;
+        padding:0;
+    }   
+
+    .sidenav-trigger {
+        color:#fff;
+        @media screen and (max-width: $break2) {
+            display:block;
+        }
+    }
+}
+
+.sidenav {
+    background-color: $modra;
+    padding-top:$velikost_menu;
+    li {
+        color:#fff;
+        a {
+            color:#fff;
+        }
+        
+    }
+    
+    
+   
+}
+
+
+#nav {
+    background-color:$modra;
+    
+    ul {
+        position:fixed;
+        margin-top:$velikost_menu;     // v gridu je postranní menu pod horním, proto se musí posunout jen text menu, aby panel zbytečně nezabíral více místa a netvořil scrollbar
+
+        li {
+            a {
+                color:#fff;
+                
+                &:hover {
+                    color: $svetla;
+                }    
+                &.active {
+                    color:$zluta;
+                    font-weight: bold;    
+                }
+            
+            }
+            
+            .btn {
+                background-color: $modra;
+                border:none;
+                box-shadow: none;
+                &:hover {
+                    color: $svetla;
+                }     
+                width:100%;
+                padding-left:0;
+                @media screen and (max-width: $break1) {
+                    width:100%;
+                }
+            }
+        }
+        
+    }
+    
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap; 
+    height:100%  
+}
+
+.content {
+    width:90%;   
+    height:100%;
+    margin:0 auto;
+    padding:2% 5% 0 5%;
+    background-color: #fff;
+    .obsah {
+        padding:5% 0 5% 0;
+        min-height:100%;
+        .err {
+            b {
+                color:$cervena;
+            }  
+        }
+        
+    }
+}
+
+
+.card {
+    text-align: justify;
+    
+        img {
+            width:35%;
+            height:auto;
+            
+            float:left;
+            padding:1%;
+    }
+    .card-footer {
+        color:$svetla;
+        float:right;
+        text-align:right;
+    }
+}
+
+.progress {
+    display:none;
+}
+
+
+
+
+select {
+    display:block;
+}
+
+.msg {
+    position:absolute;
+    top:20%;
+    left:20%;
+    width:30%;
+    height:auto;
+    padding:1%;
+    background-color:$modra;
+    color:#fff;
+    z-index: 9999;
+    #skryjFlash {
+        float:right;
+        color:$zluta;
+        font-weight: bold;
+    }
+}

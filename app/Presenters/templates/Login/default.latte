@@ -1,0 +1,9 @@
+{block content}
+<div class="obsah">
+    
+	Vítejte na přihlašovací stránce!
+	{foreach $uzivatele as $key=>$val}
+		<br>Přihlaš uživatele <a n:href="prihlas,$key"> {$val}</a>
+	{/foreach}
+
+</div>
