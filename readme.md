@@ -1,7 +1,7 @@
 Správce značek
 =================
 
-Aplikace pro správu značek zapomocí Nette 3.1
+Aplikace pro správu značek zapomocí Nette 3.1 a Materialize
 
 
 Požadavky
@@ -40,3 +40,4 @@ TO DO
 - ošetření délky - v DB omezeno (název, cesta, ...), ve scriptu nijak --> error
 - PHP 8
 - upravit vzhled flash message
+- oprava odesílání formuláře (někdy je třeba kliknout na odeslat 2x - problém s materialize)
