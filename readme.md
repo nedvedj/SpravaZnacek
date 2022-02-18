@@ -24,6 +24,7 @@ Systém umožňuje se přihlásit za jednoho ze 3 předdefinovaných uživatelů
 
 Systém umožňuje vložit novou značku či editovat stávající. Výsledky lze řadit vzestupně či sestupně dle názvu a je možné zvolit počet výsledků na stránku
 
+Demo verze dostupná online na [znacky.esnpilsen.cz](https://znacky.esnpilsen.cz)
 
 ![Návrh databáze](navrhDB.png?raw=true)
 
@@ -38,3 +39,4 @@ TO DO
 - dodělání DB
 - ošetření délky - v DB omezeno (název, cesta, ...), ve scriptu nijak --> error
 - PHP 8
+- upravit vzhled flash message
