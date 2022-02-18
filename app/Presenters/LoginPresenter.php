@@ -13,7 +13,7 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
     private $loginManager;
     private $znackyManager;
 
-    public function __construct(Models\;inManager $loginManager, Models\ZnackyManager $znackyManager) 
+    public function __construct(Models\LoginManager $loginManager, Models\ZnackyManager $znackyManager) 
     {
             $this->loginManager = $loginManager;  
             $this->znackyManager = $znackyManager;        
