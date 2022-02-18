@@ -1,4 +1,4 @@
-Sportisimo správce značek
+Správce značek
 =================
 
 Aplikace pro správu značek zapomocí Nette 3.1
@@ -14,7 +14,7 @@ Instalace
 ------------
 
 v config/local.neon přepsat přístupové údaje k DB
-do DB importovat SQL soubor - sportisimo.sql
+do DB importovat SQL soubor - db.sql
 
 
 Popis funkčnosti
@@ -24,7 +24,6 @@ Systém umožňuje se přihlásit za jednoho ze 3 předdefinovaných uživatelů
 
 Systém umožňuje vložit novou značku či editovat stávající. Výsledky lze řadit vzestupně či sestupně dle názvu a je možné zvolit počet výsledků na stránku
 
-Demo verze dostupná online na [sportisimo.esnpilsen.cz](https://sportisimo.esnpilsen.cz)
 
 ![Návrh databáze](navrhDB.png?raw=true)
 
