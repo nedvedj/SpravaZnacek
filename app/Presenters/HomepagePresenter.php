@@ -33,6 +33,16 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         if (!$this->getUser()->isLoggedIn()) {
             $this->redirect('Login:');
         }        
+        if ($this->getUser()->isInRole('admin')) {
+            bdump("Je to admin");
+        }
+        if ($this->getUser()->isInRole('editor')) {
+            bdump("Je to editor");
+        }
+
+        if ($this->getUser()->isAllowed('file', 'delete')) { // může nad zdrojem 'file' provést 'delete'?
+            bdump("Ano je");
+        }
     }
 
     public function __construct(
@@ -145,7 +155,8 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
 		$this->template->strana = $strana;
         $this->template->pocet = $this->pocet;
 		$this->template->posledni = $posledni;
-        $this->template->uzivatel = $this->getUser()->roles["jmeno"];
+
+        if ($this->getUser()->isLoggedIn()) $this->template->uzivatel = $this->getUser()->roles["jmeno"];
         
     }
 

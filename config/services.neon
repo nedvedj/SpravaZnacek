@@ -4,3 +4,4 @@ services:
 	- App\Models\LogaManager
 	- App\Forms\ZnackyFactory
 	- App\Models\LoginManager
+	- App\Models\MyAuthorizator

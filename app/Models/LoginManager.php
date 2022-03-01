@@ -37,9 +37,12 @@ class LoginManager implements Nette\Security\Authenticator
         $id = intval($username);
         if(!array_key_exists($id, $users)) throw new Nette\Security\AuthenticationException('Tento uživatel nebyl nalezen');
 
+
 		return new SimpleIdentity(
 			$id,
-			['jmeno' => $users[$id]]
+			
+			['jmeno' => $users[$id],
+			"admin", "editor"]
 		);
 	}
 
